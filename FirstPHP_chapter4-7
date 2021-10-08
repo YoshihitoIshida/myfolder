@@ -27,9 +27,10 @@ $total = 0;
 foreach ($census as $city => $population) {
   $total += $population;
   $poPulation = number_format($population);
+  $toTal = number_format($total);
   print "<tr><td>$city</td><td>$poPulation</td></tr>\n";
 }
-print "<tr><td>Total</td><td>$total</td></tr>\n";
+print "<tr><td>Total</td><td>$toTal</td></tr>\n";
 print "</table>";
 
 ksort($census);
@@ -39,9 +40,10 @@ $total = 0;
 foreach ($census as $city => $population) {
   $total += $population;
   $poPulation = number_format($population);
+  $toTal = number_format($total);
   print "<tr><td>$city</td><td>$poPulation</td></tr>\n";
 }
-print "<tr><td>Total</td><td>$total</td></tr>\n";
+print "<tr><td>Total</td><td>$toTal</td></tr>\n";
 print "</table>";
 
 ?>
