@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>multiple</title>
+</head>
+<body>
+<?php
+$dayToPrint = 4;
+$d = new DateTime('next Tuesday');
+print "<select name='day'>\n";
+for ($i=0; $i < $dayToPrint ; $i++) {
+  print "<option>".$d->format('l F jS')."</option>\n";
+  $d->modify("+2 day");
+}
+print "</select>";
+?>
+</body>
+</html>
