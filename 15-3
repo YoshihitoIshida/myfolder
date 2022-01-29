@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>multiple</title>
+</head>
+<body>
+<pre>
+<?php
+$a = new DateTime('10:36 am');
+$b = new DateTime('5/11');
+$c = new DateTime('March 5th 2017');
+$d = new DateTime('3/10/2022');
+$e = new DateTime('2015-03-10 17:34:45');
+$f = new DateTime('2015-03-10 17:34:45.326425');
+$g = new DateTime('@381718923');
+$h = new DateTime('3/Mar/2015:17:34:45 +0400');
+$i = new DateTime('next Tuesday');
+$j = new DateTime('last day of April 2015');
+$k = new DateTime('10:36 am');
+
+print $a->format('r')."\n";
+print $b->format('r')."\n";
+print $c->format('r')."\n";
+print $d->format('r')."\n";
+print $e->format('r')."\n";
+print $f->format('r')."\n";
+print $g->format('r')."\n";
+print $h->format('r')."\n";
+print $i->format('r')."\n";
+print $j->format('r')."\n";
+print $k->format('r')."\n";
+
+?>
+</pre>
+</body>
+</html>
