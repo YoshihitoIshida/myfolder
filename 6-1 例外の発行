@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>例外の発行</title>
+</head>
+<body>
+<pre>
+<?php
+Class Entree{
+  public $name;
+  public $ingredients = array();
+    //コンストラクタを設定
+  public function __construct($name,$ingredients){
+      //例外を発行する
+    if (!is_array($ingredients)) {
+      throw new Exception('$ingredients must be an array');
+    }
+    $this->name = $name;
+    $this->ingredients = $ingredients;
+  }
+
+  public function hasIngredient($ingredient){
+    return in_array($ingredient,$this->ingredients);
+  }
+}
+try{
+  $drink = new Entree('Glass of Milk','milk');
+  if ($drink->hasIngredient('milk')) {
+    print "Yummy!";
+  }
+} catch(Exception $e){
+  print "Couldn't creat the drink:".$e->getMessage();
+}
+?>
