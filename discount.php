@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
 <meta charset="utf-8">
-<title>section8-4_P289</title>
+<title>section8-5_P301</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -18,28 +18,32 @@ if (!cken($_POST)) {
 $_POST = es($_POST);  //HTMLエスケープ（XSS）
 ?>
 
-  <!__隠しフィールドから値を受け取る __>
 <?php
 $errors = [];
-if (isset($_POST['discount'])) {
-  $discount = $_POST['discount'];
-    if (!is_numeric($discount)) {
-      $errors[] = "割引率の数値エラー";
-    }
+  //クーポンコード
+if (isset($_POST['couponCode'])) {
+  $couponCode = $_POST['couponCode'];
 }else {
-  $errors[] = "割引率が未設定";
+  $couponCode = "";  //未設定エラー
 }
-if (isset($_POST['tanka'])) {
-  $tanka = $_POST['tanka'];
-    if (!ctype_digit($tanka)) {
-      $errors[] = "単価の数値エラー";
-    }
+if (isset($_POST['goodsID'])) {
+  $goodsID = $_POST['goodsID'];
 }else {
-  $errors[] = "単価が未設定";
+  $goodsID = "";  //未設定エラー
 }
 ?>
 
-  <!__入力フィールドから値を受け取る__>
+<?php
+require_once("saledata.php");
+$discount = getCouponRate($couponCode);
+$tanka = getPrice($goodsID);
+   //割引率と単価に値があるかチェックする
+ if (is_null($discount)||is_null($tanka)) {
+  $err = '<div cladd="error">不正な操作がありました。</div>';
+  exit($err);
+ }
+?>
+
 <?php
 if (isset($_POST['kosu'])) {
   $kosu = $_POST['kosu'];
@@ -59,7 +63,7 @@ if (count($errors)>0) {
   }
   echo "</li>";
 }else {
-  $price = $tanka*$kosu;
+  $price = $tanka * $kosu;
   $discount_price = floor($price * $discount);
   $off_price = $price - $discount_price;
   $off_per = (1 - $discount) * 100;
