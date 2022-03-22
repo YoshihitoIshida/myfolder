@@ -2,12 +2,14 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>フォームのエラーメッセージを表示する</title>
+<title>エラーと変換した入力データの処理7-14</title>
 </head>
 <body>
 <?php
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
-  if ($form_errors = validate_form()) {
+  //空も含めたエラーメッセージは第1引数、inputタグのtextへ入力された名前が第2引数へ
+  list($form_errors,$input) = validate_form();
+  if ($form_errors) {
     show_form($form_errors);
   } else {
     process_form();
