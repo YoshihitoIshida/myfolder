@@ -12,7 +12,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
   if ($form_errors) {
     show_form($form_errors);
   } else {
-    process_form();
+    process_form($input);
   }
 } else {
   show_form();
@@ -39,10 +39,12 @@ function show_form($errors = ''){
 
 function validate_form(){
   $errors = array();
-  if (strlen($_POST['my_name']) < 3) {
-    $errors[] = 'Your name must be at least 3 letters long.';
+  $input = array();
+  $input['name'] = trim($_POST['name'] ?? '');
+  if (strlen($input['name']) == 0) {
+    $errors[] = 'Your name is required.';
   }
-  return $errors;
+  return array($errors,$input);
 }
 ?>
 </body>
