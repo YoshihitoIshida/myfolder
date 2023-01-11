@@ -8,66 +8,52 @@
 <body>
 <pre>
 
+<table>
+  <tr>
+    <th>City</th><th>Population</th>
+  </tr>
 <?php
-$census = [['New York','NY',8175133],
-['Los Angeles','CA',3792621],
-['Chicago','IL',2695598],
-['Houston','TX',2100263],
-['Philadelphia','PA',1526006],
-['San Antonio','TX',1327407],
-['San Diego','CA',1307402],
-['Dallas','TX',1197816],
-['San Jose','CA',945942]
-];
+// $census の各要素は、都市名、週、人口の3要素
+$census = [['New York','NY',8175133,
+'Los Angeles','CA',3792621,
+'Chicago','IL',2695598,
+'Houston','TX',2100263,
+'Philadelphia','PA',1526006,
+'Phoenix','AZ',1445632,
+'San Antonio','TX',1327407,
+'San Diego','CA',1307402,
+'Dallas','TX',1197816,
+'San Jose','CA',945942]];
 
-print "<table>\n";
-print "<tr><th>City</th><th>Population</th></tr>\n";
 $total = 0;
 $state_totals = array();
 foreach ($census as $city_info) {
+  // 総人口を更新する
   $total += $city_info[2];
-    //この州をまだ見ていない場合は、総人口を０に初期化する
-  if (!array_key_exists($city_info[1],$state_totals)) {
+  // この州をまだ見ていない場合は総人口を０に初期化する
+  if (! array_key_exists($city_info[1] , $state_totals)) {
     $state_totals[$city_info[1]] = 0;
   }
-    //初期化して０に、人口をプラス、後は更新していく
-    //空の$state_totalsに配列がプラスされていく
+  //州ごとの人口を集計する
   $state_totals[$city_info[1]] += $city_info[2];
-  print "<tr><td>$city_info[0],$city_info[1],</td><td>$city_info[2]</td><tr>\n";
+  print "<tr><td>$city_info[0], $city_info[1]</td><td>$city_info[2]</td></tr>\n";
 }
 print "<tr><td>Total</td><td>$total</td></tr>\n";
+//州ごとの合計を出力する
 foreach ($state_totals as $state => $population) {
-  print "<tr><td>$state</td><td>$population</td></tr>";
+  print "<tr><td>$state</td><td>$population</td></tr>\n";
 }
 print "</table>";
 
 ?>
+
 </pre>
 </body>
 </html>
 
 
+
 City	Population
-San Jose,CA	945,942
-Dallas,TX	1,197,816
-San Diego,CA	1,307,402
-San Antonio,TX	1,327,407
-Phoenix,AZ	1,445,632
-Philadelphia,PA	1,526,006
-Houston,TX	2,100,263
-Chicago,IL	2,695,598
-Los Angeles,CA	3,792,621
-New York,NY	8,175,133
-Total	24,513,820
-City	Population
-Chicago,IL	2,695,598
-Dallas,TX	1,197,816
-Houston,TX	2,100,263
-Los Angeles,CA	3,792,621
-New York,NY	8,175,133
-Philadelphia,PA	1,526,006
-Phoenix,AZ	1,445,632
-San Antonio,TX	1,327,407
-San Diego,CA	1,307,402
-San Jose,CA	945,942
-Total	24,513,820
+New York, NY	8175133
+Total	8175133
+NY	8175133
