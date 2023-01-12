@@ -1,0 +1,25 @@
+!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>20-4</title>
+</head>
+<body>
+<?php
+//アメリカ英語
+$en = new Collator('en_US');
+// 日本語
+$ja = new Collator('ja_JP');
+
+$words = array('ka','か','が','カ','ガ');
+
+print "Before sorting: ". implode(',' , $words) . "\n";
+
+$en->sort($words);
+print "en_US sorting:" . implode(',' , $words) . "\n";
+
+$ja->sort($words);
+print "ja_JP sorting:" . implode(',' , $words) . "\n";
+?>
+</body>
+</html>
